@@ -8,26 +8,23 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
+@EnableCaching
 public class CryptoComputationServiceTest {
 
     @Mock
-    private RedisTemplate<String, Object> redisTemplate;
-
-    @Mock
-    private ValueOperations<String, Object> valueOperations;
-
-    @Mock
     private CsvHandler csvHandler;
+
+    @Mock
+    private CacheManager cacheManager;
 
     @InjectMocks
     private CryptoComputationService service;
@@ -35,7 +32,6 @@ public class CryptoComputationServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        when(redisTemplate.opsForValue()).thenReturn(valueOperations);
     }
 
     @Test
@@ -61,27 +57,8 @@ public class CryptoComputationServiceTest {
         assertEquals(48000.00, stats.getNewestPrice(), 0.01);
         assertEquals((48000.00 - 46000.50) / 46000.50, stats.getNormalizedRange(), 0.0001);
 
-        // verify that the output is cached in redis
-        verify(valueOperations, times(1)).set(anyString(), any(CryptoStats.class));
-    }
-
-    @Test
-    void testCachedStats() {
-        // mock data
-        CryptoStats mockStats = new CryptoStats("BTC", 46813.21, 48000.00, 48000.00, 46000.50, (48000.00 - 46000.50) / 46000.50);
-
-        // mock redis cache output
-        when(redisTemplate.opsForValue().get("crypto:BTC")).thenReturn(mockStats);
-
-        // retrieve cached stats
-        CryptoStats cachedStats = service.getCachedStats("BTC");
-
-        // validate cached stats
-        assertEquals(mockStats, cachedStats);
-
-        // verify redis interaction
-        verify(redisTemplate, atLeastOnce()).opsForValue();
-        verify(valueOperations, times(1)).get("crypto:BTC");
+        // verify that CSV parsing was called once
+        verify(csvHandler, times(1)).parseCsvFiles();
     }
 
     @Test
@@ -172,5 +149,4 @@ public class CryptoComputationServiceTest {
         // Verify that CSV parsing was called once
         verify(csvHandler, times(1)).parseCsvFiles();
     }
-
 }

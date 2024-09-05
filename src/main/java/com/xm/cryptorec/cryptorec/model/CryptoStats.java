@@ -16,6 +16,10 @@ public class CryptoStats implements Serializable {
     private double minPrice;
     private double normalizedRange;
 
+    // for deserialization
+    public CryptoStats() {
+    }
+
     public CryptoStats(String symbol, double oldestPrice, double newestPrice, double maxPrice, double minPrice, double normalizedRange) {
         this.symbol = symbol;
         this.oldestPrice = oldestPrice;
