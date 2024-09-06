@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cryptorec
+  namespace: cryptorec
+  labels:
+    app: cryptorec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cryptorec
+  template:
+    metadata:
+      labels:
+        app: cryptorec
+    spec:
+      containers:
+        - name: cryptorec
+          image: pavloskkr/cryptorec:latest
+          volumeMounts:
+          - name: csv-volume
+            mountPath: /app/data
+          ports:
+            - containerPort: 8091
+          env:
+            - name: SPRING_REDIS_HOST
+              value: redis
+            - name: SPRING_REDIS_PORT
+              value: "6379"
+      volumes:
+        - name: csv-volume
+          hostPath:
+            path: "/home/randvu-admin/cryptorec/csv-files"
+            type: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csv-pvc
+  namespace: cryptorec
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cryptorec
+  namespace: cryptorec
+spec:
+  selector:
+    app: cryptorec
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8091

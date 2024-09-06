@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cryptorec-ingress
+  namespace: cryptorec
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - hosts:
+        - cryptorec.rndv-testing.xyz
+      secretName: cryptorec-tls
+  rules:
+    - host: cryptorec.rndv-testing.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cryptorec
+                port:
+                  number: 80
