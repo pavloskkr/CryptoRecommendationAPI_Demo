@@ -1,5 +1,6 @@
 package com.xm.cryptorec.cryptorec.controller;
 
+import com.xm.cryptorec.cryptorec.config.RateLimitConfig;
 import com.xm.cryptorec.cryptorec.dto.CryptoNormalizedRangeDto;
 import com.xm.cryptorec.cryptorec.exception.CryptoNotFoundException;
 import com.xm.cryptorec.cryptorec.model.CryptoStats;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CryptoController.class)
+@Import(RateLimitConfig.class)
 public class CryptoControllerTest {
 
     @Autowired
