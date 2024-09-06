@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "769d662e-a286-4c23-bac6-4ac645d9ef77",
+		"name": "Crypto Recommendation API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19811632"
+	},
+	"item": [
+		{
+			"name": "Get Desc List of All Cryptos by Normalized Range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/api/cryptos/normalized-range",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"cryptos",
+						"normalized-range"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Prod] Get Desc List of All Cryptos by Normalized Range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptorec.rndv-testing.xyz/api/cryptos/normalized-range",
+					"protocol": "https",
+					"host": [
+						"cryptorec",
+						"rndv-testing",
+						"xyz"
+					],
+					"path": [
+						"api",
+						"cryptos",
+						"normalized-range"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Crypto Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/api/cryptos/BTC/stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"cryptos",
+						"BTC",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Prod] Get Specific Crypto Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptorec.rndv-testing.xyz/api/cryptos/BTC/stats",
+					"protocol": "https",
+					"host": [
+						"cryptorec",
+						"rndv-testing",
+						"xyz"
+					],
+					"path": [
+						"api",
+						"cryptos",
+						"BTC",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the Crypto with Highest Normalized Range for a Specific Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/api/cryptos/normalized-range/2022-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"cryptos",
+						"normalized-range",
+						"2022-01-01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Prod] Get the Crypto with Highest Normalized Range for a Specific Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptorec.rndv-testing.xyz/api/cryptos/normalized-range/2022-01-01",
+					"protocol": "https",
+					"host": [
+						"cryptorec",
+						"rndv-testing",
+						"xyz"
+					],
+					"path": [
+						"api",
+						"cryptos",
+						"normalized-range",
+						"2022-01-01"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
