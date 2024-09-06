@@ -2,11 +2,8 @@ package com.xm.cryptorec.cryptorec.controller;
 
 import com.xm.cryptorec.cryptorec.dto.CryptoNormalizedRangeDto;
 import com.xm.cryptorec.cryptorec.interfaces.CryptoControllerInterface;
-import com.xm.cryptorec.cryptorec.model.CryptoData;
 import com.xm.cryptorec.cryptorec.model.CryptoStats;
 import com.xm.cryptorec.cryptorec.service.CryptoComputationService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

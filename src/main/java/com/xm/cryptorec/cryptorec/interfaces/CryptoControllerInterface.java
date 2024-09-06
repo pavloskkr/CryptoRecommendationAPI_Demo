@@ -2,10 +2,10 @@ package com.xm.cryptorec.cryptorec.interfaces;
 
 import com.xm.cryptorec.cryptorec.dto.CryptoNormalizedRangeDto;
 import com.xm.cryptorec.cryptorec.model.CryptoStats;
-import io.swagger.v3.oas.annotations.Parameter;
-import org.springframework.web.bind.annotation.PathVariable;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 

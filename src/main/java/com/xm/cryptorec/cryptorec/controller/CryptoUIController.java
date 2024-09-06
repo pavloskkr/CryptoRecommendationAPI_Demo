@@ -1,7 +1,6 @@
 package com.xm.cryptorec.cryptorec.controller;
 
 import com.xm.cryptorec.cryptorec.dto.CryptoNormalizedRangeDto;
-import com.xm.cryptorec.cryptorec.exception.CryptoNotFoundException;
 import com.xm.cryptorec.cryptorec.model.CryptoStats;
 import com.xm.cryptorec.cryptorec.service.CryptoComputationService;
 import org.springframework.beans.factory.annotation.Autowired;
